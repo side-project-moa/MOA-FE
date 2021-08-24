@@ -1,5 +1,6 @@
+import Login from '../Login';
 import { render, screen } from '@testing-library/react';
-import App from './App';
+
 // 테스트 가능한 코드 => 관심사의 분리
 // test('renders learn react link', () => {
 //   render(<App />);
@@ -9,7 +10,7 @@ import App from './App';
 
 describe('App', () => {
  it('renders tasks', () => {
-  const { container } = render(<App />);
+  const { container } = render(<Login />);
 
  });
 });
