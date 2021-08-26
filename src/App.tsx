@@ -1,4 +1,4 @@
-import Login from '@src/components/Login';
+import Login from '@src/components/Login/Login';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from './config/style/gloabalStyle';
 import { DefaultTheme } from './config/style/theme';
