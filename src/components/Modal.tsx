@@ -24,7 +24,7 @@ const ModalWrapper = styled.div`
 `;
 
 const ModalCover = styled.div`
- border-radius: 5px;
+ border-radius: 15px;
  background-color: white;
  padding: 1rem;
 `;

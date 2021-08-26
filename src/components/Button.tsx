@@ -4,7 +4,7 @@ const CustomButton = ({
  text,
  onClick,
 }: {
- text: string;
+ text: string | React.ReactNode;
  onClick: React.MouseEventHandler<HTMLButtonElement>;
 }) => {
  return <StyledCreateButton onClick={onClick}>{text}</StyledCreateButton>;
@@ -13,16 +13,15 @@ const CustomButton = ({
 export default CustomButton;
 
 const StyledCreateButton = styled.button`
- border: none; 
- padding :1rem;
- background-color: ${({ theme }) => theme.color.darkGray};
- color: ${({ theme }) => theme.color.purple};
- font-weight: ${({ theme }) => theme.fontWeight.bold2};
- width: 15rem;
+ padding: 1rem;
+ background-color: #8ab6d6;
+ color: ${({ theme }) => theme.color.white};
+ transition: ease-in-out 0.3s;
+ width: 340px;
+
  border-radius: ${({ theme }) => theme.border.radius.S};
- margin-left: 1rem;
+
  &:hover {
-  background-color: ${({ theme }) => theme.color.whiteMint};
+  background-color: #2978b5;
  }
 `;
- 

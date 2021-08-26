@@ -11,6 +11,12 @@ body{
     width: 100%;
 }
 
+button {
+    border: none;
+    cursor: pointer;
+
+}
+
 a{
     color: inherit;
     text-decoration: none;

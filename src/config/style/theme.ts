@@ -43,6 +43,9 @@ const DefaultTheme = {
   mint: '#B5EAEA',
   whiteMint: '#EDF6E5',
   purple: '#C6B4CE',
+  label: '#6E7191',
+  line: '#D9DBE9',
+  offWhite: '#FEFEFE',
  },
  fontSize: {
   XXL: '2rem', // 32px
