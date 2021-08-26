@@ -7,15 +7,15 @@ import LogInInput from './LogInInput';
 import Modal from '../Modal';
 import OAuthButton from '../OAuthButton';
 
-const vailedEmail = (text: string) => {
+const verifiedEmail = (text: string) => {
  const emailRule =
   /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
  return emailRule.test(text);
 };
 
-const vailedPassword = (text: string) => {
- const passwardRule = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/i;
- return passwardRule.test(text);
+const verifiedPassword = (text: string) => {
+ const passwordRule = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/i;
+ return passwordRule.test(text);
 };
 
 type inputStatType = {
@@ -26,6 +26,7 @@ type LogInStateType = {
  email: inputStatType;
  password: inputStatType;
 };
+
 export default function Login() {
  const initialLogInState = {
   email: {
@@ -42,52 +43,61 @@ export default function Login() {
   useState<LogInStateType>(initialLogInState);
 
  const clickHandler = (e: MouseEvent<HTMLButtonElement>) => {};
+ const handleLogInClick = (e: MouseEvent<HTMLButtonElement>) => {
+  console.log(LogInState);
+ };
 
- const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-  if (e.target.placeholder === '이메일') {
-   setLogInState((state) => ({
-    ...state,
-    email: { isCorrect: vailedEmail(e.target.value), value: e.target.value },
-   }));
-  }
+ const handleGitLogInClick = (e: MouseEvent<HTMLButtonElement>) => {
+  window.location.href =
+   'https://github.com/login/oauth/authorize?client_id=7f8c268c407297518728&redirect_url=http://localhost:3000/git-oauth';
+ };
 
-  if (e.target.placeholder === '비밀번호') {
-   setLogInState((state) => ({
-    ...state,
-    password: {
-     isCorrect: vailedPassword(e.target.value),
-     value: e.target.value,
-    },
-   }));
-  }
+ const handleEmailInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+  setLogInState((state) => ({
+   ...state,
+   email: { isCorrect: verifiedEmail(e.target.value), value: e.target.value },
+  }));
+ };
+
+ const handlePasswordInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+  setLogInState((state) => ({
+   ...state,
+   password: {
+    isCorrect: verifiedPassword(e.target.value),
+    value: e.target.value,
+   },
+  }));
  };
 
  return (
   <Modal>
    <LogInWrapper>
     <LogInTitle>MOA에 오신것을 환영합니다.</LogInTitle>
+
     <LogInInput
      placeholder={'이메일'}
-     onChange={changeHandler}
+     onChange={handleEmailInputChange}
      isCorrect={LogInState.email.isCorrect}
      value={LogInState.email.value}
     />
     <LogInInput
      placeholder={'비밀번호'}
-     onChange={changeHandler}
+     onChange={handlePasswordInputChange}
      isCorrect={LogInState.password.isCorrect}
      value={LogInState.password.value}
     />
 
-    <CustomButton text={'로그인'} onClick={clickHandler} />
+    <CustomButton text={'로그인'} onClick={handleLogInClick} />
     <CustomButton text={'회원가입'} onClick={clickHandler} />
+
     <LogInSubTitle>SNS 계정 간편 로그인</LogInSubTitle>
+
     <LoginButtons>
      <OAuthButton
       iconColor={'#ffff'}
       color={'#272E33'}
       icon={<FaGithub />}
-      onClick={clickHandler}
+      onClick={handleGitLogInClick}
      />
      <OAuthButton
       iconColor={'#272E33'}

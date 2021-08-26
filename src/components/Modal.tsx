@@ -17,7 +17,7 @@ const ModalWrapper = styled.div`
  height: 100vh;
  position: fixed;
  width: 100%;
- background-color: gray;
+ background-color: rgba(0, 0, 0, 0.1);
  justify-content: center;
  align-items: center;
 `;
@@ -26,4 +26,6 @@ const ModalCover = styled.div`
  border-radius: 15px;
  background-color: white;
  padding: 1rem;
+ -webkit-box-shadow: 0px 0px 23px 10px rgba(0, 0, 0, 0.2);
+ box-shadow: 0px 0px 23px 10px rgba(0, 0, 0, 0.2);
 `;

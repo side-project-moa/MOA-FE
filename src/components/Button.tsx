@@ -18,7 +18,7 @@ const StyledCreateButton = styled.button`
  color: ${({ theme }) => theme.color.white};
  transition: ease-in-out 0.3s;
  width: 340px;
-
+ font-size: 1.2rem;
  border-radius: ${({ theme }) => theme.border.radius.S};
 
  &:hover {
