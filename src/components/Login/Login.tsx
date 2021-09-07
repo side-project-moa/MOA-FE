@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import CustomButton from '../Button';
 import { FaGithub } from 'react-icons/fa';
 import { RiKakaoTalkFill } from 'react-icons/ri';
-import LogInInput from './LogInInput';
-import Modal from '../Modal';
+import LogInInput from './input/LogInInput';
+
 import OAuthButton from '../OAuthButton';
 
 const verifiedEmail = (text: string) => {
@@ -27,7 +27,10 @@ type LogInStateType = {
  password: inputStatType;
 };
 
-export default function Login() {
+type LogInPropsType = {
+  setLogin : React.Dispatch<React.SetStateAction<boolean>>
+}
+export default function Login({ setLogin } : LogInPropsType) {
  const initialLogInState = {
   email: {
    isCorrect: false,
@@ -42,7 +45,9 @@ export default function Login() {
  const [LogInState, setLogInState] =
   useState<LogInStateType>(initialLogInState);
 
- const clickHandler = (e: MouseEvent<HTMLButtonElement>) => {};
+ const clickHandler = (e: MouseEvent<HTMLButtonElement>) => {
+  setLogin(false)
+ };
  const handleLogInClick = (e: MouseEvent<HTMLButtonElement>) => {
   console.log(LogInState);
  };
@@ -70,9 +75,8 @@ export default function Login() {
  };
 
  return (
-  <Modal>
-   <LogInWrapper>
-    <LogInTitle>MOA에 오신것을 환영합니다.</LogInTitle>
+
+  <>
 
     <LogInInput
      placeholder={'이메일'}
@@ -106,8 +110,7 @@ export default function Login() {
       onClick={clickHandler}
      />
     </LoginButtons>
-   </LogInWrapper>
-  </Modal>
+ </>
  );
 }
 
@@ -121,19 +124,5 @@ const LoginButtons = styled.div`
  width: 80%;
  justify-content: space-evenly;
 `;
-const LogInTitle = styled.span`
- display: block;
- margin-bottom: 2rem;
- font-size: 1.4rem;
- font-weight: 700;
-`;
 
-const LogInWrapper = styled.div`
- display: flex;
- padding: 1rem;
- flex-direction: column;
- width: 540px;
- height: 540px;
- justify-content: space-evenly;
- align-items: center;
-`;
+

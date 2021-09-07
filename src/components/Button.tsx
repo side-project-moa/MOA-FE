@@ -1,27 +1,28 @@
 import styled from 'styled-components';
 
 const CustomButton = ({
- text,
- onClick,
+  text,
+  onClick,
 }: {
- text: string | React.ReactNode;
- onClick: React.MouseEventHandler<HTMLButtonElement>;
+  text: string | React.ReactNode;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
 }) => {
- return <StyledCreateButton onClick={onClick}>{text}</StyledCreateButton>;
+  return <StyledCreateButton onClick={onClick}>{text}</StyledCreateButton>;
 };
 
 export default CustomButton;
 
 const StyledCreateButton = styled.button`
- padding: 1rem;
- background-color: #8ab6d6;
- color: ${({ theme }) => theme.color.white};
- transition: ease-in-out 0.3s;
- width: 340px;
- font-size: 1.2rem;
- border-radius: ${({ theme }) => theme.border.radius.S};
+  padding: 1rem;
+  background-color: ${({ theme }) => theme.color.default};
+  color: ${({ theme }) => theme.color.white};
+  width: 340px;
+  font-size: 1.2rem;
+  border-radius: ${({ theme }) => theme.border.radius.S};
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin-left: 1rem;
 
- &:hover {
-  background-color: #2978b5;
- }
+  &:hover {
+    background-color: ${({ theme }) => theme.color.darkYellow};
+  }
 `;

@@ -1,4 +1,4 @@
-import Login from '../components/Login';
+import Login from '../components/Login/Login';
 import { render, screen } from '@testing-library/react';
 import { shallow, configure } from 'enzyme';
 
