@@ -20,7 +20,6 @@ const StyledCreateButton = styled.button`
   font-size: 1.2rem;
   border-radius: ${({ theme }) => theme.border.radius.S};
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  margin-left: 1rem;
 
   &:hover {
     background-color: ${({ theme }) => theme.color.darkYellow};

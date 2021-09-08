@@ -3,7 +3,7 @@ import CustomButton from '../Button';
 import LogInInput from './input/LogInInput';
 
 export default function SignIn() {
-  // const [signInState], setSignInState] = useState<>();
+  
   const clickHandler = (e: React.MouseEvent) => {};
   return (
     <>
