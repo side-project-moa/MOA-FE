@@ -10,17 +10,15 @@ export default function Modal({
 }) {
   const [isOpen, setOpen] = useState(true);
   const handleClickOutside = (e: React.MouseEvent) => {
-    if (e.target !== e.currentTarget) return;
     setOpen(false);
-    console.log('clicked outside');
   };
   useEffect(() => {
     if (isOpen === false) setTimeout(() => setPopup(false), 300);
-  }, [isOpen]);
+  }, [isOpen, setPopup]);
 
   return (
-    <ModalWrapper onClick={handleClickOutside}>
-      <ModalCover onClick={(e) => e.stopPropagation()} {...{ isOpen }}>
+    <ModalWrapper onMouseDown={handleClickOutside}>
+      <ModalCover onMouseDown={(e) => e.stopPropagation()} {...{ isOpen }}>
         {children}
       </ModalCover>
     </ModalWrapper>

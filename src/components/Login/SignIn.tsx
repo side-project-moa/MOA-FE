@@ -1,9 +1,8 @@
 import styled from 'styled-components';
-import CustomButton from '../Button';
+import CustomButton from '../Buttons/Button';
 import LogInInput from './input/LogInInput';
 
 export default function SignIn() {
-  
   const clickHandler = (e: React.MouseEvent) => {};
   return (
     <>
@@ -15,7 +14,12 @@ export default function SignIn() {
       <LogInInput placeholder={'비밀번호'} />
       <LogInInput placeholder={'비밀번호 확인'} />
 
-      <CustomButton text={'회원가입'} onClick={clickHandler} />
+      <CustomButton
+        buttonSize={'LARGE'}
+        buttonType={'INITIAL'}
+        text={'회원가입'}
+        onClick={clickHandler}
+      />
     </>
   );
 }

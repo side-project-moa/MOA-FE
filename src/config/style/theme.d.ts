@@ -10,6 +10,7 @@ export declare interface DefaultTheme {
     default: string;
     darkYellow: string;
     gray: string;
+    disableGray: string;
     white: string;
     green: string;
     mint: string;
