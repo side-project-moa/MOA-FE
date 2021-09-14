@@ -11,14 +11,14 @@ export interface IFilterData {
 }
 
 export default function DefaultFilter({ placeholder, options }: IFilterData) {
-  const [isFilterOptionsOn, setFilterOptionsOn] = useState(false);
+  const [isFilterOptionsOn, setIsFilterOptionsOn] = useState(false);
   const [gatherType, setGatherType] = useRecoilState(gatherTypeAtom);
 
-  const selectedOptionDOM = useRef<HTMLDivElement>(null);
-  const currentDOM = useRef<HTMLUListElement>(null);
+  const selectedOptionDOM = useRef<HTMLInputElement>(null);
+  const filterOptions = useRef<HTMLUListElement>(null);
 
   const handleOnOffFilterOptions = () => {
-    setFilterOptionsOn(!isFilterOptionsOn);
+    setIsFilterOptionsOn(!isFilterOptionsOn);
   };
 
   const handleOptionClick = (
@@ -27,21 +27,24 @@ export default function DefaultFilter({ placeholder, options }: IFilterData) {
     if (!e.target) return;
     if (!selectedOptionDOM.current) return;
 
-    const element = e.currentTarget as HTMLOptionElement;
-    setFilterOptionsOn(false);
-    setGatherType(element.innerHTML);
+    const selectedFilterOption = e.currentTarget as HTMLOptionElement;
+    setIsFilterOptionsOn(false);
+
+    if (selectedFilterOption.innerHTML.match(/전체/)) setGatherType('');
+    else setGatherType(selectedFilterOption.innerHTML);
   };
 
   return (
     <DefaultFilterContainer>
       <SelectedOption
+        readOnly
         ref={selectedOptionDOM}
         onClick={handleOnOffFilterOptions}
-      >
-        {gatherType}
-      </SelectedOption>
+        placeholder={placeholder}
+        value={gatherType}
+      />
 
-      <FilterOptions ref={currentDOM}>
+      <FilterOptions ref={filterOptions}>
         {isFilterOptionsOn &&
           options.map((option) => (
             <FilterOption value={option} onClick={(e) => handleOptionClick(e)}>
@@ -59,7 +62,9 @@ const DefaultFilterContainer = styled.div`
   width: 11.25rem;
 `;
 
-const SelectedOption = styled.div`
+const SelectedOption = styled.input`
+  all: unset;
+
   ${({ theme }) => theme.style.flexAlignItemsCenter}
   box-sizing: border-box;
   padding-left: 1.125rem;
