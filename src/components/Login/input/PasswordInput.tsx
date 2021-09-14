@@ -30,9 +30,9 @@ const LogInInputWrapper = styled.input<LogInInputType>`
   width: 100%;
   border: none;
   ${({ isCorrect }) => {
-    return !isCorrect
+    return isCorrect
       ? `border: none; border-bottom: 3px #f1f1f1 solid;`
-      : `border: none; border-bottom: 3px #2978b5 solid;
+      : `border: none; border-bottom: 3px #FEB66C solid;
  background: rgba(223, 46, 46,0.1);`;
   }}
 

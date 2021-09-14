@@ -27,3 +27,14 @@ export function throttle<F extends (...args: any) => any>(
 
   return throttled as (...args: Parameters<F>) => ReturnType<F>;
 }
+
+export function verifiedEmail(text: string) {
+  const emailRule =
+    /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+  return emailRule.test(text);
+}
+
+export function verifiedPassword(text: string) {
+  const passwordRule = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/i;
+  return passwordRule.test(text);
+}

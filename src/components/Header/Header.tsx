@@ -103,7 +103,7 @@ const LogInAndSignUp = styled.div<LogInSignUpType>`
 `;
 
 const HeaderWrapper = styled.div`
-  padding: 2rem 10rem;
+  padding: 2rem 5%;
   ${({ theme }) => theme.style.flexSpaceBetween}
 `;
 

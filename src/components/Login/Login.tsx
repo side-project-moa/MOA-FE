@@ -6,17 +6,8 @@ import { RiKakaoTalkFill } from 'react-icons/ri';
 import LogInInput from './input/LogInInput';
 
 import OAuthButton from '../Buttons/OAuthButton';
-
-const verifiedEmail = (text: string) => {
-  const emailRule =
-    /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-  return emailRule.test(text);
-};
-
-const verifiedPassword = (text: string) => {
-  const passwordRule = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/i;
-  return passwordRule.test(text);
-};
+import { verifiedEmail, verifiedPassword } from '@src/config/utils/util';
+import PasswordInput from './input/PasswordInput';
 
 type inputStatType = {
   isCorrect: boolean;
@@ -33,11 +24,11 @@ type LogInPropsType = {
 export default function Login({ setLogin }: LogInPropsType) {
   const initialLogInState = {
     email: {
-      isCorrect: false,
+      isCorrect: true,
       value: '',
     },
     password: {
-      isCorrect: false,
+      isCorrect: true,
       value: '',
     },
   };
@@ -85,7 +76,7 @@ export default function Login({ setLogin }: LogInPropsType) {
         isCorrect={LogInState.email.isCorrect}
         value={LogInState.email.value}
       />
-      <LogInInput
+      <PasswordInput
         placeholder={'비밀번호'}
         onChange={handlePasswordInputChange}
         isCorrect={LogInState.password.isCorrect}
@@ -98,12 +89,6 @@ export default function Login({ setLogin }: LogInPropsType) {
         text={'로그인'}
         onClick={handleLogInClick}
       />
-      {/* <CustomButton
-        buttonSize={'LARGE'}
-        buttonType={'INITIAL'}
-        text={'회원가입'}
-        onClick={clickHandler}
-      /> */}
 
       <LogInSubTitle>SNS 계정 간편 로그인</LogInSubTitle>
 
