@@ -1,3 +1,4 @@
+import { media } from '@src/config/utils/util';
 import styled from 'styled-components';
 
 type CustomButtonType = {
@@ -25,14 +26,24 @@ export default CustomButton;
 type buttonType = Pick<CustomButtonType, 'buttonSize' | 'buttonType'>;
 
 const StyledCreateButton = styled.button<buttonType>`
-  padding: ${({ buttonSize }) => {
+  ${({ buttonSize }) => {
     switch (buttonSize) {
       case 'LARGE':
-        return '1rem';
+        return 'padding : 1rem; width: 340px;';
       case 'SMALL':
-        return `0.5rem`;
+        return `padding : 0.5rem 3rem;`;
     }
   }};
+${media.mobile} {
+  ${({ buttonSize }) => {
+    switch (buttonSize) {
+      case 'LARGE':
+        return 'padding : 1rem; width: 340px;';
+      case 'SMALL':
+        return `padding : 0.5rem 2rem;`;
+    }
+  }};
+}
   background-color: ${({ theme, buttonType }) => {
     switch (buttonType) {
       case 'INITIAL':
@@ -50,17 +61,12 @@ const StyledCreateButton = styled.button<buttonType>`
         return theme.color.disableGray;
     }
   }};
-
   font-weight: 600;
-  width: ${({ buttonSize }) => {
-    switch (buttonSize) {
-      case 'LARGE':
-        return '340px';
-      case 'SMALL':
-        return `240px`;
-    }
-  }};
+  white-space: nowrap;
   font-size: 1.2rem;
+  ${media.mobile} {
+    font-size: 1rem;
+  }
   border-radius: ${({ theme }) => theme.border.radius.S};
   cursor: pointer;
   transition: all 0.2s ease-in-out;
