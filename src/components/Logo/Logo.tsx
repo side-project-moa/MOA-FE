@@ -1,3 +1,4 @@
+import { media } from '@src/config/utils/util';
 import styled from 'styled-components';
 
 export default function Logo() {
@@ -7,4 +8,7 @@ export default function Logo() {
 const LogoWrapper = styled.span`
   font-size: 2rem;
   color: ${({ theme }) => theme.color.default};
+  ${media.mobile} {
+    font-size: 1.5rem;
+  }
 `;

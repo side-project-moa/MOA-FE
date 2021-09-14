@@ -1,3 +1,4 @@
+import { media } from '@src/config/utils/util';
 import { useState, MouseEvent } from 'react';
 import styled from 'styled-components';
 import CustomButton from '../Buttons/Button';
@@ -59,6 +60,12 @@ const LogInHeaderWrapper = styled.div`
   width: 540px;
   justify-content: space-evenly;
   align-items: center;
+  ${media.mobile} {
+    width: 100%;
+    border-radius: 0;
+    padding: 0 2rem;
+    padding-top: 3rem;
+  }
 `;
 
 type LogInSignUpType = {
@@ -110,7 +117,10 @@ const HeaderWrapper = styled.div`
 const LogInTitle = styled.span`
   display: block;
   margin-bottom: 1.5rem;
-  font-size: 1.4rem;
+  font-size: ${({ theme }) => theme.fontSize.XL};
+  ${media.mobile}{
+    font-size: ${({ theme }) => theme.fontSize.L};
+  }
   font-weight: 700;
 `;
 
@@ -121,6 +131,11 @@ const LogInWrapper = styled.div`
   flex-direction: column;
   width: 540px;
   height: 400px;
+  ${media.mobile} {
+    width: 100%;
+    border-radius: 0;
+    padding: 0rem 2rem;
+  }
   justify-content: space-evenly;
   align-items: center;
 `;

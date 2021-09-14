@@ -1,4 +1,6 @@
+import { media } from '@src/config/utils/util';
 import { useEffect, useState } from 'react';
+import { TiTimes } from 'react-icons/ti';
 import styled from 'styled-components';
 
 export default function Modal({
@@ -19,12 +21,23 @@ export default function Modal({
   return (
     <ModalWrapper onMouseDown={handleClickOutside}>
       <ModalCover onMouseDown={(e) => e.stopPropagation()} {...{ isOpen }}>
+        <ModalClose onClick={handleClickOutside} />
         {children}
       </ModalCover>
     </ModalWrapper>
   );
 }
-
+const ModalClose = styled(TiTimes)`
+  display: none;
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  font-size: 2rem;
+  color: ${({ theme }) => theme.color.default};
+  ${media.mobile} {
+    display: block;
+  }
+`;
 const ModalWrapper = styled.div`
   display: flex;
   z-index: 2;
@@ -60,7 +73,12 @@ const ModalCover = styled.div<{ isOpen: boolean }>`
       opacity: 0;
     }
   }
-
+  ${media.mobile} {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+  position: relative;
   animation: ${({ isOpen }) =>
     isOpen ? `srr 0.3s ease-in-out` : `suu 0.6s ease-in-out`};
   border-radius: 15px;

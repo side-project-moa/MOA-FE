@@ -1,3 +1,4 @@
+import { media } from '@src/config/utils/util';
 import styled from 'styled-components';
 
 interface InputType {
@@ -21,7 +22,11 @@ type LogInInputType = Pick<InputType, 'isCorrect'>;
 const LogInInputWrapper = styled.input<LogInInputType>`
   margin-bottom: 0.5rem;
   padding: 1rem;
-  font-size: 1.2rem;
+
+  font-size: ${({ theme }) => theme.fontSize.L};
+  ${media.mobile} {
+    font-size: ${({ theme }) => theme.fontSize.M};
+  }
   width: 100%;
   border: none;
   ${({ isCorrect }) => {

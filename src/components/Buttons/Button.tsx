@@ -38,7 +38,7 @@ ${media.mobile} {
   ${({ buttonSize }) => {
     switch (buttonSize) {
       case 'LARGE':
-        return 'padding : 1rem; width: 340px;';
+        return 'padding : 1rem 6rem; width: auto;';
       case 'SMALL':
         return `padding : 0.5rem 2rem;`;
     }
