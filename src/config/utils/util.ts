@@ -38,3 +38,15 @@ export function verifiedPassword(text: string) {
   const passwordRule = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/i;
   return passwordRule.test(text);
 }
+
+
+const customMediaQuery = (maxWidth: number): string =>
+  `@media (max-width: ${maxWidth}px)`;
+
+export const media = {
+  custom: customMediaQuery,
+  1440: customMediaQuery(1440),
+  768: customMediaQuery(768),
+  tablet: customMediaQuery(1100),
+  mobile: customMediaQuery(500),
+};
