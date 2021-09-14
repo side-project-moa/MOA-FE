@@ -66,6 +66,7 @@ const ModalCover = styled.div<{ isOpen: boolean }>`
   border-radius: 15px;
   background-color: white;
   padding: 1rem;
+
   -webkit-box-shadow: 0px 0px 23px 10px rgba(0, 0, 0, 0.2);
   box-shadow: 0px 0px 23px 10px rgba(0, 0, 0, 0.2);
 `;
