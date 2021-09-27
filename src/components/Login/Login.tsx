@@ -6,16 +6,16 @@ import { RiKakaoTalkFill } from 'react-icons/ri';
 import LogInInput from './input/LogInInput';
 
 import OAuthButton from '../Buttons/OAuthButton';
-import { verifiedEmail, verifiedPassword } from '@src/config/utils/util';
+import { verifyEmail, verifyPassword } from '@src/config/utils/util';
 import PasswordInput from './input/PasswordInput';
 
-type inputStatType = {
+type inputStateType = {
   isCorrect: boolean;
   value: string;
 };
 type LogInStateType = {
-  email: inputStatType;
-  password: inputStatType;
+  email: inputStateType;
+  password: inputStateType;
 };
 
 type LogInPropsType = {
@@ -52,7 +52,7 @@ export default function Login({ setLogin }: LogInPropsType) {
     setLogInState((state) => ({
       ...state,
       email: {
-        isCorrect: verifiedEmail(e.target.value),
+        isCorrect: verifyEmail(e.target.value),
         value: e.target.value,
       },
     }));
@@ -62,7 +62,7 @@ export default function Login({ setLogin }: LogInPropsType) {
     setLogInState((state) => ({
       ...state,
       password: {
-        isCorrect: verifiedPassword(e.target.value),
+        isCorrect: verifyPassword(e.target.value),
         value: e.target.value,
       },
     }));

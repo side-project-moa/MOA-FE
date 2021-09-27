@@ -52,7 +52,7 @@ const ModalWrapper = styled.div`
 `;
 
 const ModalCover = styled.div<{ isOpen: boolean }>`
-  @keyframes srr {
+  @keyframes modalUp {
     from {
       transform: translateY(-100px);
       opacity: 0;
@@ -63,7 +63,7 @@ const ModalCover = styled.div<{ isOpen: boolean }>`
     }
   }
 
-  @keyframes suu {
+  @keyframes modalDown {
     from {
       transform: translateY(0);
       opacity: 1;
@@ -80,7 +80,7 @@ const ModalCover = styled.div<{ isOpen: boolean }>`
   }
   position: relative;
   animation: ${({ isOpen }) =>
-    isOpen ? `srr 0.3s ease-in-out` : `suu 0.6s ease-in-out`};
+    isOpen ? `modalUp 0.3s ease-in-out` : `modalDown 0.6s ease-in-out`};
   border-radius: 15px;
   background-color: white;
   padding: 1rem;

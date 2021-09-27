@@ -1,4 +1,4 @@
-import { verifiedEmail, verifiedPassword } from '@src/config/utils/util';
+import { verifyEmail, verifyPassword } from '@src/config/utils/util';
 import { useState } from 'react';
 import styled from 'styled-components';
 import CustomButton from '../Buttons/Button';
@@ -29,7 +29,7 @@ export default function SignIn() {
   };
   const handleEmailInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail({
-      isCorrect: verifiedEmail(e.target.value),
+      isCorrect: verifyEmail(e.target.value),
       value: e.target.value,
     });
   };
@@ -37,7 +37,7 @@ export default function SignIn() {
     e: React.ChangeEvent<HTMLInputElement>,
   ) => {
     setNickname({
-      isCorrect: verifiedEmail(e.target.value),
+      isCorrect: true,
       value: e.target.value,
     });
   };
@@ -45,17 +45,17 @@ export default function SignIn() {
     e: React.ChangeEvent<HTMLInputElement>,
   ) => {
     setPassword({
-      isCorrect: verifiedPassword(e.target.value),
+      isCorrect: verifyPassword(e.target.value),
       value: e.target.value,
     });
   };
-  const verifiedConfirm = (text: string, password: string) => password === text;
+  const verifyConfirm = (text: string, password: string) => password === text;
 
   const handleConfirmPasswordInputChange = (
     e: React.ChangeEvent<HTMLInputElement>,
   ) => {
     setConfirmationPassword({
-      isCorrect: verifiedConfirm(e.target.value, password.value),
+      isCorrect: verifyConfirm(e.target.value, password.value),
       value: e.target.value,
     });
   };
