@@ -1,24 +1,118 @@
+import { verifyEmail, verifyPassword } from '@src/config/utils/util';
+import { useState } from 'react';
 import styled from 'styled-components';
-import CustomButton from '../Button';
+import CustomButton from '../Buttons/Button';
 import LogInInput from './input/LogInInput';
+import PasswordInput from './input/PasswordInput';
 
 export default function SignIn() {
-  // const [signInState], setSignInState] = useState<>();
-  const clickHandler = (e: React.MouseEvent) => {};
+  type inputType = {
+    isCorrect: boolean;
+    value: string;
+  };
+  const initialState = {
+    isCorrect: true,
+    value: '',
+  };
+  const [isUniqueEmail, setUniqueEmail] = useState(true);
+  //const [isConfirmationPassword, setUniqueEmail] = useState(true);
+
+  const [email, setEmail] = useState<inputType>(initialState);
+  const [nickname, setNickname] = useState<inputType>(initialState);
+  const [password, setPassword] = useState<inputType>(initialState);
+  const [confirmationPassword, setConfirmationPassword] =
+    useState<inputType>(initialState);
+
+  const clickHandler = (e: React.MouseEvent) => {
+    if (email.isCorrect) {
+    }
+  };
+  const handleEmailInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail({
+      isCorrect: verifyEmail(e.target.value),
+      value: e.target.value,
+    });
+  };
+  const handleNicknameInputChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    setNickname({
+      isCorrect: true,
+      value: e.target.value,
+    });
+  };
+  const handlePasswordInputChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    setPassword({
+      isCorrect: verifyPassword(e.target.value),
+      value: e.target.value,
+    });
+  };
+  const verifyConfirm = (text: string, password: string) => password === text;
+
+  const handleConfirmPasswordInputChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    setConfirmationPassword({
+      isCorrect: verifyConfirm(e.target.value, password.value),
+      value: e.target.value,
+    });
+  };
+
   return (
     <>
       <EmailWrapper>
-        <LogInInput placeholder={'이메일'} />
+        <LogInInput
+          placeholder={'이메일'}
+          onChange={handleEmailInputChange}
+          isCorrect={email.isCorrect}
+          value={email.value}
+        />
         <Btn onClick={clickHandler}> 중복확인 </Btn>
       </EmailWrapper>
-      <LogInInput placeholder={'닉네임'} />
-      <LogInInput placeholder={'비밀번호'} />
-      <LogInInput placeholder={'비밀번호 확인'} />
-
-      <CustomButton text={'회원가입'} onClick={clickHandler} />
+      {!isUniqueEmail && (
+        <EmailWarning>이미 존재하는 이메일 입니다!</EmailWarning>
+      )}
+      <LogInInput
+        placeholder={'닉네임'}
+        onChange={handleNicknameInputChange}
+        isCorrect={nickname.isCorrect}
+        value={nickname.value}
+      />
+      <PasswordInput
+        placeholder={'비밀번호'}
+        onChange={handlePasswordInputChange}
+        isCorrect={password.isCorrect}
+        value={password.value}
+      />
+      <PasswordInput
+        placeholder={'비밀번호 확인'}
+        onChange={handleConfirmPasswordInputChange}
+        isCorrect={confirmationPassword.isCorrect}
+        value={confirmationPassword.value}
+      />
+      {!confirmationPassword.isCorrect && (
+        <EmailWarning>비밀번호가 일치하지 않습니다.</EmailWarning>
+      )}
+      <CustomButton
+        buttonSize={'LARGE'}
+        buttonType={'INITIAL'}
+        text={'회원가입'}
+        onClick={clickHandler}
+      />
     </>
   );
 }
+
+const EmailWarning = styled.div`
+  color: #ff4848;
+  font-size: 1rem;
+  text-align: start;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+`;
 
 const EmailWrapper = styled.div`
   display: flex;
