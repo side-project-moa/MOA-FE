@@ -1,9 +1,8 @@
 import { RecoilRoot } from 'recoil';
 import { ThemeProvider } from 'styled-components';
-import DefaultFilter, { IFilterData } from './components/Filter/DefaultFilter';
-import SignModal from './components/Login/SignModal';
 import GlobalStyle from './config/style/gloabalStyle';
 import { DefaultTheme } from './config/style/theme';
+import Router from './Router';
 
 export type FilterPlaceholder = '모임 방식' | '카테고리' | '단기/정기';
 
@@ -16,8 +15,7 @@ export default function App() {
     <RecoilRoot>
       <ThemeProvider theme={DefaultTheme}>
         <GlobalStyle />
-        {/* <SignModal /> */}
-        <DefaultFilter {...testData} />
+        <Router />
       </ThemeProvider>
     </RecoilRoot>
   );

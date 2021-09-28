@@ -14,7 +14,8 @@ body{
 button {
     border: none;
     cursor: pointer;
-
+    outline: none;
+    border: none;
 }
 
 a{
